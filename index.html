@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>teste bruno souza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Identidade visual inspirada na CRMBonus: fundo escuro, gradiente laranja→coral, tipografia branca */
+  :root {
+    --laranja: #FF9F0A;
+    --coral: #FF4D4D;
+    --gradiente: linear-gradient(90deg, #FF9F0A 0%, #FF4D4D 100%);
+    --gradiente-diag: linear-gradient(135deg, #FF9F0A 0%, #FF4D4D 100%);
+    --branco: #FFFFFF;
+    --texto: #D9D9D9;
+    --texto-suave: #A3A3A3;
+    --fundo: #1E1E1E;
+    --fundo-card: #2A2A2A;
+    --fundo-rodape: #161616;
+    --borda: rgba(255, 255, 255, 0.14);
+    --sombra: 0 18px 45px rgba(0, 0, 0, 0.45);
+    --sombra-pill: none;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background: var(--fundo); }
+  body {
+    font-family: "Montserrat", "Segoe UI", Arial, sans-serif;
+    color: var(--texto);
+    background:
+      radial-gradient(ellipse 70% 45% at 85% 0%, rgba(255, 140, 20, 0.16), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 10% 100%, rgba(255, 77, 77, 0.12), transparent 70%),
+      var(--fundo);
+    background-attachment: fixed;
+    line-height: 1.6;
+  }
+
+  /* ---------- Cabeçalho ---------- */
+  header {
+    background: var(--fundo);
+    border-bottom: 3px solid transparent;
+    border-image: var(--gradiente) 1;
+  }
+  .topo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .marca { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  /* Os 9 pontos desenham a seta ↗ da marca */
+  .pontos { display: grid; grid-template-columns: repeat(3, 10px); gap: 3px; }
+  .pontos span { width: 10px; height: 10px; border-radius: 2px; background: transparent; }
+  .pontos span:nth-child(1),
+  .pontos span:nth-child(2),
+  .pontos span:nth-child(3),
+  .pontos span:nth-child(5),
+  .pontos span:nth-child(6),
+  .pontos span:nth-child(7),
+  .pontos span:nth-child(9) { background: var(--laranja); }
+  .pontos span:nth-child(3),
+  .pontos span:nth-child(6),
+  .pontos span:nth-child(9) { background: var(--coral); }
+  .marca strong {
+    font-weight: 700; color: var(--branco); font-size: 1.5rem; line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .marca small {
+    display: block; font-weight: 400; color: var(--texto-suave);
+    font-size: .8rem; letter-spacing: 0;
+  }
+
+  nav { display: flex; gap: 12px; flex-wrap: wrap; }
+  .pill {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--branco);
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--branco);
+    box-shadow: var(--sombra-pill);
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  .pill:active, .pill:focus {
+    background: var(--gradiente);
+    border-color: transparent;
+    color: var(--branco);
+  }
+  :focus-visible { outline: 3px solid var(--laranja); outline-offset: 3px; }
+
+  /* ---------- Introdução ---------- */
+  .intro {
+    max-width: 900px;
+    margin: 64px auto 8px;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .intro h1 {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--branco);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .intro p { font-weight: 400; font-size: 1.05rem; color: var(--texto); }
+
+  /* ---------- Enunciados ---------- */
+  main { padding: 24px 24px 80px; }
+  .enunciado {
+    max-width: 1200px;
+    margin: 56px auto 0;
+    scroll-margin-top: 20px;
+  }
+  .cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    max-width: 960px;
+    margin: 0 auto 22px;
+  }
+  .numero {
+    flex: 0 0 auto;
+    width: 64px; height: 64px;
+    border-radius: 8px;
+    background: var(--gradiente-diag);
+    box-shadow: 0 10px 28px rgba(255, 110, 40, 0.35);
+    display: grid; place-items: center;
+    font-size: 1.8rem; font-weight: 700; color: var(--branco);
+  }
+  .cabecalho h2 { font-size: 1.4rem; font-weight: 700; color: var(--branco); }
+  .cabecalho p { font-weight: 400; font-size: .98rem; color: var(--texto-suave); }
+
+  .quadro {
+    background: var(--fundo-card);
+    border: 1px solid var(--borda);
+    border-radius: 16px;
+    box-shadow: var(--sombra);
+    padding: 22px;
+    text-align: center;
+  }
+  .quadro button {
+    all: unset;
+    cursor: zoom-in;
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .quadro img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid var(--borda);
+    background: #fff;
+  }
+  .dica {
+    margin-top: 14px;
+    font-size: .85rem;
+    color: var(--texto-suave);
+  }
+  .vazio {
+    padding: 70px 20px;
+    border: 2px dashed rgba(255, 159, 10, 0.45);
+    border-radius: 10px;
+    color: var(--texto-suave);
+    font-weight: 400;
+  }
+  .vazio code { color: var(--laranja); font-weight: 600; }
+
+  /* ---------- Visualizador (lightbox) ---------- */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(18, 18, 18, 0.95);
+    display: none;
+    flex-direction: column;
+    z-index: 100;
+  }
+  .lightbox.aberto { display: flex; }
+  .lb-barra {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 18px; gap: 12px;
+    color: var(--branco);
+    border-bottom: 1px solid var(--borda);
+  }
+  .lb-barra h3 { font-size: 1rem; font-weight: 600; }
+  .lb-acoes { display: flex; gap: 8px; }
+  .lb-acoes button {
+    cursor: pointer;
+    background: transparent; color: var(--branco);
+    border: 1px solid var(--branco);
+    font: 600 1rem "Montserrat", Arial, sans-serif;
+    min-width: 42px; height: 42px; padding: 0 14px;
+    border-radius: 6px;
+  }
+  .lb-acoes button:hover { background: var(--gradiente); border-color: transparent; }
+  #lb-zoom { background: var(--gradiente); border-color: transparent; }
+  .lb-area {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    padding: 10px 18px 24px;
+  }
+  .lb-area img {
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    background: #fff;
+    border-radius: 8px;
+    cursor: zoom-in;
+    transition: width .2s;
+  }
+  .lb-area.zoom img { max-width: none; max-height: none; cursor: zoom-out; }
+
+
+  footer {
+    text-align: center;
+    padding: 26px;
+    font-size: .85rem;
+    color: var(--texto-suave);
+    background: var(--fundo-rodape);
+    border-top: 1px solid var(--borda);
+  }
+
+  @media (max-width: 640px) {
+    .cabecalho { flex-wrap: wrap; }
+    .topo { justify-content: center; }
+    .numero { width: 52px; height: 52px; font-size: 1.4rem; border-radius: 8px; }
+    .quadro { padding: 12px; border-radius: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topo">
+    <a class="marca" href="#">
+      <div class="pontos" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <span></span><span class="v"></span><span></span>
+        <span class="v"></span><span></span><span></span>
+      </div>
+      <strong>Case<small>Bruno Souza</small></strong>
+    </a>
+    <nav aria-label="Enunciados">
+      <a class="pill" href="#enunciado-1">Discovery e entendimento técnico</a>
+      <a class="pill" href="#enunciado-2">Desenho da integração</a>
+      <a class="pill" href="#enunciado-3">Condução até a homologação</a>
+    </nav>
+  </div>
+</header>
+
+<section class="intro">
+  <h1>Fluxogramas dos enunciados</h1>
+  <p>Clique em um fluxograma para abrir em tela cheia e ampliar os detalhes.</p>
+</section>
+
+<main>
+
+  <!-- ===== ENUNCIADO 1 ===== -->
+  <section class="enunciado" id="enunciado-1">
+    <div class="cabecalho">
+      <div class="numero">1</div>
+      <div>
+        <h2>Discovery e entendimento técnico</h2>
+        <p>● Como você entende a jornada PDV V2 e os principais pontos de interação entre PDV e CRMBonus.</p>
+        <p>● Quais informações adicionais precisaria obter do parceiro.</p>
+        <p>● Quais dúvidas, riscos, dependências e premissas precisariam ser esclarecidos.</p>
+      </div>
+    </div>
+    <div class="quadro">
+      <button type="button" data-titulo="Discovery e entendimento técnico" aria-label="Ampliar fluxograma do enunciado 1">
+        <img src="imagens/enunciado-1.png" alt="Fluxograma do enunciado 1: atualização da posição do estoque a partir das movimentações">
+      </button>
+      <p class="dica">Clique na imagem para ampliar</p>
+    </div>
+  </section>
+
+  <!-- ===== ENUNCIADO 2 ===== -->
+  <section class="enunciado" id="enunciado-2">
+    <div class="cabecalho">
+      <div class="numero">2</div>
+      <div>
+        <h2>Desenho da integração</h2>
+        <p>● Evento que inicia o fluxo.</p>
+        <p>● Principais chamadas e informações necessárias.</p>
+        <p>● Resposta esperada e tratamento no PDV.</p>
+        <p>● Pontos de atenção e possíveis exceções ou erros.</p>
+      </div>
+    </div>
+    <div class="quadro">
+      <button type="button" data-titulo="Enunciado 2" aria-label="Ampliar fluxograma do enunciado 2">
+        <img src="imagens/enunciado-2.png" alt="Fluxograma do enunciado 2: relatório de duplicatas em aberto com subtotal por cliente e total geral">
+      </button>
+      <p class="dica">Clique na imagem para ampliar</p>
+    </div>
+  </section>
+
+    <!-- ===== ENUNCIADO 3 ===== -->
+  <section class="enunciado" id="enunciado-3">
+    <div class="cabecalho">
+      <div class="numero">3</div>
+      <div>
+        <h2>Condução até a homologação</h2>
+        <p>● Principais responsabilidades do parceiro e da CRMBonus.</p>
+        <p>● Entregáveis, dependências e riscos relevantes.</p>
+        <p>● Critérios de aceite para considerar a integração homologada.</p>
+        <p>● Como garantiria que a solução fosse uma capacidade padrão do PDV, evitando customizações específicas por cliente.</p>
+      </div>
+    </div>
+    <div class="quadro">
+      <button type="button" data-titulo="Condução até a homologação" aria-label="Ampliar fluxograma do enunciado 3">
+        <img src="imagens/enunciado-3.png" alt="Fluxograma do enunciado 3: condução até a homologação">
+      </button>
+      <p class="dica">Clique na imagem para ampliar</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>Bruno Souza | Nov-2026</footer>
+
+
+<!-- Visualizador -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lb-titulo">
+  <div class="lb-barra">
+    <h3 id="lb-titulo"></h3>
+    <div class="lb-acoes">
+      <button type="button" id="lb-anterior" aria-label="Anterior">‹</button>
+      <button type="button" id="lb-proximo" aria-label="Próximo">›</button>
+      <button type="button" id="lb-zoom">Ampliar</button>
+      <button type="button" id="lb-fechar" aria-label="Fechar">✕</button>
+    </div>
+  </div>
+  <div class="lb-area" id="lb-area">
+    <img id="lb-img" alt="">
+  </div>
+</div>
+
+<script>
+  const botoes = [...document.querySelectorAll('.quadro button')];
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbArea = document.getElementById('lb-area');
+  const lbTitulo = document.getElementById('lb-titulo');
+  const btZoom = document.getElementById('lb-zoom');
+  let atual = 0;
+
+  // Se a imagem não existir, mostra um aviso no lugar
+  botoes.forEach(b => {
+    const img = b.querySelector('img');
+    const marcarVazio = () => {
+      if (b.dataset.vazio) return;
+      const aviso = document.createElement('div');
+      aviso.className = 'vazio';
+      aviso.innerHTML = 'Imagem não encontrada. Adicione o arquivo <code>' +
+        img.getAttribute('src') + '</code> ao repositório.';
+      b.replaceWith(aviso);
+      b.dataset.vazio = '1';
+    };
+    img.addEventListener('error', marcarVazio);
+    if (img.complete && img.naturalWidth === 0) marcarVazio();
+  });
+
+  const disponiveis = () => botoes.filter(b => !b.dataset.vazio);
+
+  function abrir(botao) {
+    const lista = disponiveis();
+    atual = lista.indexOf(botao);
+    mostrar();
+    lb.classList.add('aberto');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lb-fechar').focus();
+  }
+  function mostrar() {
+    const lista = disponiveis();
+    const b = lista[atual];
+    const img = b.querySelector('img');
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbTitulo.textContent = b.dataset.titulo;
+    setZoom(false);
+    const varios = lista.length > 1;
+    document.getElementById('lb-anterior').style.display = varios ? '' : 'none';
+    document.getElementById('lb-proximo').style.display = varios ? '' : 'none';
+  }
+  function fechar() {
+    lb.classList.remove('aberto');
+    document.body.style.overflow = '';
+    const b = disponiveis()[atual];
+    if (b) b.focus();
+  }
+  function setZoom(on) {
+    lbArea.classList.toggle('zoom', on);
+    btZoom.textContent = on ? 'Ajustar' : 'Ampliar';
+  }
+  function navegar(passo) {
+    const n = disponiveis().length;
+    atual = (atual + passo + n) % n;
+    mostrar();
+  }
+
+  botoes.forEach(b => b.addEventListener('click', () => abrir(b)));
+  document.getElementById('lb-fechar').onclick = fechar;
+  document.getElementById('lb-anterior').onclick = () => navegar(-1);
+  document.getElementById('lb-proximo').onclick = () => navegar(1);
+  btZoom.onclick = () => setZoom(!lbArea.classList.contains('zoom'));
+  lbImg.addEventListener('click', e => { e.stopPropagation(); setZoom(!lbArea.classList.contains('zoom')); });
+  lbArea.addEventListener('click', e => { if (e.target === lbArea) fechar(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('aberto')) return;
+    if (e.key === 'Escape') fechar();
+    if (e.key === 'ArrowRight') navegar(1);
+    if (e.key === 'ArrowLeft') navegar(-1);
+  });
+
+</script>
+</body>
+</html>
