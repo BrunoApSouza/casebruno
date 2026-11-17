@@ -1,2 +1,6 @@
-# Bruno Souza - Fluxogramas:
-feito em 3horas com as ferramentas .ppt, vscode, github, chatgpt para consultas
+=======
+# casebruno
+
+4H de Trabalho, se baseando na documentação passada, utilizada chatGPT, VSCODE, Html, Postman, powerPoint
+
+=======
